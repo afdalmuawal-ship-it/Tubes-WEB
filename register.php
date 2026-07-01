@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="auth-card">
             <!-- Logo -->
             <div class="auth-logo">
-                <i class="bi bi-search-heart"></i>
+                <img src="img/logo.png" class="auth-logo-img" alt="Lostly Logo">
             </div>
             <h2 class="auth-title">Buat Akun</h2>
             <p class="auth-subtitle">Daftar untuk mulai menggunakan Lostly</p>

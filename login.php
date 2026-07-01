@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="auth-card">
             <!-- Logo -->
             <div class="auth-logo">
-                <i class="bi bi-search-heart"></i>
+                <img src="img/logo.png" class="auth-logo-img" alt="Lostly Logo">
             </div>
             <h2 class="auth-title">Selamat Datang</h2>
             <p class="auth-subtitle">Masuk ke akun Lostly Anda</p>

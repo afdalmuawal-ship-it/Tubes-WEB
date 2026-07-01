@@ -1,12 +1,6 @@
-
-   /*STYLE.CSS - Stylesheet Utama Website Lostly
-   Tema: Modern, Glassmorphism, Gradient Biru
-   Font: Poppins (Google Fonts)*/
-
-/* -- Import Font Poppins dari Google Fonts -- */
+/* Import Font Poppins dari Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* ROOT VARIABLES - Custom Properties */
 :root {
     /* Warna Utama Gradient */
     --primary-start: #0033FF;
@@ -55,9 +49,7 @@
     --font-main: 'Poppins', sans-serif;
 }
 
-/* =============================================
-   RESET & BASE STYLES
-   ============================================= */
+/* RESET & BASE STYLES */
 * {
     margin: 0;
     padding: 0;
@@ -112,9 +104,7 @@ img {
     background: var(--accent-blue);
 }
 
-/* =============================================
-   ANIMASI KEYFRAMES
-   ============================================= */
+/* ANIMASI KEYFRAMES */
 
 /* -- Fade In dari bawah -- */
 @keyframes fadeInUp {
@@ -128,13 +118,13 @@ img {
     }
 }
 
-/* -- Fade In -- */
+/* Fade In */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
-/* -- Slide dari kiri -- */
+/* Slide dari kiri */
 @keyframes slideInLeft {
     from {
         opacity: 0;
@@ -146,7 +136,7 @@ img {
     }
 }
 
-/* -- Slide dari kanan -- */
+/* Slide dari kanan */
 @keyframes slideInRight {
     from {
         opacity: 0;
@@ -158,44 +148,42 @@ img {
     }
 }
 
-/* -- Bounce halus -- */
+/* Bounce halus */
 @keyframes bounceLight {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
 
-/* -- Pulse glow -- */
+/* Pulse glow */
 @keyframes pulseGlow {
     0%, 100% { box-shadow: 0 0 20px rgba(0, 51, 255, 0.3); }
     50% { box-shadow: 0 0 40px rgba(0, 51, 255, 0.6); }
 }
 
-/* -- Floating -- */
+/* Floating */
 @keyframes floating {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
 }
 
-/* -- Spin lambat -- */
+/* Spin lambat */
 @keyframes spinSlow {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
-/* -- Counter up animation -- */
+/* Counter up animation */
 @keyframes countUp {
     from { opacity: 0; transform: scale(0.5); }
     to { opacity: 1; transform: scale(1); }
 }
 
-/* -- Loading spinner -- */
+/* Loading spinner */
 @keyframes spinner {
     to { transform: rotate(360deg); }
 }
 
-/* =============================================
-   KELAS ANIMASI SCROLL
-   ============================================= */
+/* KELAS ANIMASI SCROLL */
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -229,9 +217,7 @@ img {
 .animate-delay-4 { transition-delay: 0.4s; }
 .animate-delay-5 { transition-delay: 0.5s; }
 
-/* =============================================
-   NAVBAR
-   ============================================= */
+/* NAVBAR */
 .navbar-lostly {
     background: linear-gradient(135deg, rgba(0, 51, 255, 0.85) 0%, rgba(6, 0, 171, 0.9) 100%);
     backdrop-filter: blur(20px);
@@ -242,14 +228,14 @@ img {
     z-index: 1050;
 }
 
-/* -- Navbar saat di-scroll -- */
+/* Navbar saat di-scroll */
 .navbar-lostly.scrolled {
     background: linear-gradient(135deg, rgba(0, 51, 255, 0.95) 0%, rgba(6, 0, 171, 0.98) 100%);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     padding: 8px 0;
 }
 
-/* -- Logo/Brand -- */
+/* Logo/Brand */
 .navbar-lostly .navbar-brand {
     font-weight: 800;
     font-size: 1.6rem;
@@ -268,7 +254,7 @@ img {
     background-clip: text;
 }
 
-/* -- Nav Links -- */
+/* Nav Links */
 .navbar-lostly .nav-link {
     color: var(--text-light) !important;
     font-weight: 500;
@@ -285,7 +271,7 @@ img {
     background: rgba(255, 255, 255, 0.15);
 }
 
-/* -- Tombol Navbar (Login/Dashboard) -- */
+/* Tombol Navbar (Login/Dashboard) */
 .navbar-lostly .btn-nav {
     background: rgba(255, 255, 255, 0.15);
     color: var(--text-white) !important;
@@ -313,9 +299,7 @@ img {
     filter: brightness(0) invert(1);
 }
 
-/* =============================================
-   HERO SECTION
-   ============================================= */
+/* HERO SECTION */
 .hero-section {
     min-height: 100vh;
     display: flex;
@@ -473,11 +457,7 @@ img {
     font-size: 1.1rem;
 }
 
-/* =============================================
-   TOMBOL / BUTTONS
-   ============================================= */
-
-/* -- Tombol Gradient Utama -- */
+/* Tombol Gradient Utama */
 .btn-gradient {
     background: linear-gradient(135deg, var(--primary-start), var(--accent-purple));
     color: var(--text-white);
@@ -581,11 +561,7 @@ img {
     color: var(--accent-green);
 }
 
-/* =============================================
-   GLASSMORPHISM CARDS
-   ============================================= */
-
-/* -- Glass Card (untuk landing page) -- */
+/* Glass Card (untuk landing page) */
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
@@ -602,7 +578,7 @@ img {
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-/* -- White Card (untuk dashboard & halaman dalam) -- */
+/* White Card (untuk dashboard & halaman dalam) */
 .white-card {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
@@ -617,7 +593,7 @@ img {
     transform: translateY(-4px);
 }
 
-/* -- Stat Card di Dashboard -- */
+/* Stat Card di Dashboard */
 .stat-card {
     background: linear-gradient(135deg, var(--primary-start), var(--accent-purple));
     border-radius: var(--radius-lg);
@@ -696,11 +672,9 @@ img {
     background: linear-gradient(135deg, #8B5CF6, #EC4899);
 }
 
-/* =============================================
-   SECTIONS - Landing Page
-   ============================================= */
+/* SECTIONS - Landing Page */
 
-/* -- Section umum -- */
+/* Section umum */
 .section {
     padding: 100px 0;
     position: relative;
@@ -883,9 +857,7 @@ img {
     z-index: 2;
 }
 
-/* =============================================
-   FOOTER
-   ============================================= */
+/* FOOTER */
 .footer {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
@@ -973,9 +945,7 @@ img {
     transform: translateY(-3px);
 }
 
-/* =============================================
-   AUTH PAGES (Login & Register)
-   ============================================= */
+/* AUTH PAGES (Login & Register) */
 .auth-section {
     min-height: 100vh;
     display: flex;
@@ -1081,7 +1051,7 @@ img {
     color: var(--text-white);
 }
 
-/* -- Checkbox Remember Me -- */
+/* Checkbox Remember Me */
 .form-check-custom {
     display: flex;
     align-items: center;
@@ -1109,7 +1079,7 @@ img {
     cursor: pointer;
 }
 
-/* -- Auth Footer Links -- */
+/* Auth Footer Links */
 .auth-footer {
     text-align: center;
     margin-top: 24px;
@@ -1126,11 +1096,9 @@ img {
     color: var(--text-white);
 }
 
-/* =============================================
-   DASHBOARD & INTERNAL PAGES
-   ============================================= */
+/* DASHBOARD & INTERNAL PAGES */
 
-/* -- Sidebar Navbar (untuk internal) -- */
+/* Sidebar Navbar (untuk internal) */
 .internal-navbar {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(20px);
@@ -1309,9 +1277,7 @@ img {
     margin: 0;
 }
 
-/* =============================================
-   FORM STYLES (Halaman Dalam)
-   ============================================= */
+/* FORM STYLES (Halaman Dalam) */
 .form-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
@@ -1414,11 +1380,9 @@ img {
     object-fit: cover;
 }
 
-/* =============================================
-   DATA TABLE / CARD GRID
-   ============================================= */
+/* DATA TABLE / CARD GRID */
 
-/* -- Search & Filter Bar -- */
+/* Search & Filter Bar */
 .search-filter-bar {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
@@ -1577,9 +1541,7 @@ img {
     color: #93C5FD;
 }
 
-/* =============================================
-   DETAIL PAGE
-   ============================================= */
+/* DETAIL PAGE */
 .detail-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
@@ -1662,9 +1624,7 @@ img {
     margin-bottom: 20px;
 }
 
-/* =============================================
-   PAGINATION
-   ============================================= */
+/* PAGINATION */
 .pagination-custom .page-item .page-link {
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1694,9 +1654,7 @@ img {
     color: var(--text-muted);
 }
 
-/* =============================================
-   LOADING OVERLAY
-   ============================================= */
+/* LOADING OVERLAY */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -1733,9 +1691,7 @@ img {
     font-weight: 500;
 }
 
-/* =============================================
-   EMPTY STATE
-   ============================================= */
+/* EMPTY STATE */
 .empty-state {
     text-align: center;
     padding: 60px 20px;
@@ -1760,9 +1716,7 @@ img {
     font-size: 0.9rem;
 }
 
-/* =============================================
-   RESPONSIVE - TABLET
-   ============================================= */
+/* RESPONSIVE - TABLET */
 @media (max-width: 991.98px) {
     .hero-title {
         font-size: 2.5rem;
@@ -1793,9 +1747,7 @@ img {
     }
 }
 
-/* =============================================
-   RESPONSIVE - MOBILE
-   ============================================= */
+/* RESPONSIVE - MOBILE */
 @media (max-width: 767.98px) {
     .hero-section {
         padding: 100px 0 60px;
@@ -1886,9 +1838,7 @@ img {
     }
 }
 
-/* =============================================
-   RESPONSIVE - SMALL MOBILE
-   ============================================= */
+/* RESPONSIVE - SMALL MOBILE */
 @media (max-width: 575.98px) {
     .hero-title {
         font-size: 1.75rem;
@@ -1909,9 +1859,7 @@ img {
     }
 }
 
-/* =============================================
-   UTILITY CLASSES
-   ============================================= */
+/* UTILITY CLASSES */
 .text-gradient {
     background: linear-gradient(135deg, #60A5FA, #A78BFA);
     -webkit-background-clip: text;
@@ -1954,10 +1902,7 @@ img {
     font-weight: 600 !important;
 }
 
-/* =============================================
-   SIDEBAR & INTERNAL LAYOUT
-   ============================================= */
-
+/* SIDEBAR & INTERNAL LAYOUT */
 .app-wrapper {
     display: flex;
     min-height: 100vh;
@@ -2168,4 +2113,17 @@ img {
     .content-body {
         padding: 20px;
     }
+}
+
+/* Logo Image Custom Styling */
+.logo-img {
+    height: 22px;
+    width: auto;
+    object-fit: contain;
+}
+
+.auth-logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
 }

@@ -5,8 +5,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
 <!-- Sidebar -->
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <a href="dashboard.php" class="sidebar-brand">
-            <i class="bi bi-search-heart"></i> Lostly
+        <a href="<?= isset($_SESSION['role']) && $_SESSION['role'] === 'admin' ? 'admin_dashboard.php' : 'dashboard.php' ?>" class="sidebar-brand">
+            <img src="img/logo.png" class="logo-img" alt="Lostly Logo" style="filter:brightness(0) invert(1);"> Lostly
         </a>
     </div>
     

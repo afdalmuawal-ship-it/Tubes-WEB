@@ -45,7 +45,7 @@ $totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand" href="index.php">
-                <i class="bi bi-search-heart"></i> Lostly
+                <img src="img/logo.png" class="logo-img" alt="Lostly Logo"> Lostly
             </a>
 
             <!-- Hamburger Menu (Mobile) -->
@@ -135,7 +135,7 @@ $totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE
                         <div class="hero-card-float">
                             <!-- Icon kartu -->
                             <div class="card-icon">
-                                <i class="bi bi-search-heart text-white"></i>
+                                <img src="img/logo.png" style="height:28px; width:auto; filter:brightness(0) invert(1);" alt="Lostly">
                             </div>
                             <h4>Laporan Terbaru</h4>
                             <p>Barang yang baru dilaporkan</p>
@@ -240,7 +240,7 @@ $totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE
                 <!-- Ilustrasi (Kanan) -->
                 <div class="col-lg-6 animate-on-scroll slide-right">
                     <div class="glass-card p-4 text-center">
-                        <i class="bi bi-search-heart" style="font-size: 6rem; opacity: 0.3; display:block; margin-bottom:20px;"></i>
+                        <img src="img/logo.png" style="height:80px; width:auto; display:block; margin:0 auto 20px; opacity:0.35;" alt="Lostly">
                         <h4 style="font-weight:700; margin-bottom:10px;">Misi Kami</h4>
                         <p style="color:rgba(255,255,255,0.6); font-size:0.95rem;">
                             Menghubungkan setiap barang hilang dengan pemiliknya melalui 
@@ -578,7 +578,7 @@ $totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE
                 <!-- Brand Info -->
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-brand">
-                        <i class="bi bi-search-heart"></i> Lostly
+                        <img src="img/logo.png" class="logo-img" alt="Lostly Logo" style="filter:brightness(0) invert(1);"> Lostly
                     </div>
                     <p class="footer-desc">Platform pelaporan dan pencarian barang hilang & temuan terpercaya di lingkungan kampus.
                     </p>
