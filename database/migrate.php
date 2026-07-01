@@ -3,7 +3,7 @@ require_once __DIR__ . '/../koneksi.php';
 
 echo "Memulai migrasi database...\n";
 
-// 1. Tambah kolom status di users
+//Tambah kolom status di users
 $sql = "ALTER TABLE users ADD COLUMN IF NOT EXISTS status ENUM('Aktif', 'Nonaktif') DEFAULT 'Aktif'";
 if ($conn->query($sql)) {
     echo "1. Kolom status berhasil ditambahkan ke tabel users.\n";
