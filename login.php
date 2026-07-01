@@ -37,8 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        // Verifikasi password dengan password_verify
+        // Verifikasi password dengan password_verify (jika di awal demo menggunakan hash biasa, pakai yang sesuai)
         if($password == $user['password']) {
+            // Cek jika akun dinonaktifkan
+            if (isset($user['status']) && $user['status'] == 'Nonaktif') {
+                header("Location: login.php?alert=disabled");
+                exit();
+            }
+
             // -- Login Berhasil --
 
             // Set Session
@@ -47,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['email'] = $user['email'];
             $_SESSION['foto'] = $user['foto'];
             $_SESSION['role'] = $user['role'];
+            $_SESSION['status'] = $user['status'] ?? 'Aktif';
 
             // Set Cookie jika Remember Me dicentang
             if ($remember) {
@@ -56,8 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 setcookie('remember_email', '', time() - 3600, '/');
             }
 
-            // Redirect ke dashboard dengan alert sukses
-            header("Location: dashboard.php?alert=login_success");
+            // Catat aktivitas login
+            $id_user = $user['id_user'];
+            $conn->query("INSERT INTO aktivitas (id_user, aksi) VALUES ($id_user, 'User login')");
+
+            // Redirect sesuai role dengan alert sukses
+            if ($user['role'] == 'admin') {
+                header("Location: admin_dashboard.php?alert=login_success");
+            } else {
+                header("Location: dashboard.php?alert=login_success");
+            }
             exit();
         } else {
             // Password salah
@@ -142,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            name="remember"
                            <?= $remembered_email ? 'checked' : '' ?>>
                     <label class="form-check-label" for="remember">
-                        Ingat Saya (7 hari)
+                        Ingat Saya 
                     </label>
                 </div>
 

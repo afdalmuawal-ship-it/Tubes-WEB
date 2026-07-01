@@ -1,20 +1,13 @@
 <?php
 
-// SESSION.PHP - Manajemen Session & Auth Guard
-// File ini memastikan hanya user yang sudah login
-// yang dapat mengakses halaman protected
-
 // -- Mulai session jika belum dimulai --
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Include konfigurasi
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/koneksi.php';
 
-// -- Cek Cookie Remember Me --
-// Jika user belum login tapi ada cookie, otomatis login
 if (!isset($_SESSION['id_user']) && isset($_COOKIE['remember_email'])) {
     $email = $conn->real_escape_string($_COOKIE['remember_email']);
     $query = "SELECT * FROM users WHERE email = '$email'";
@@ -22,22 +15,43 @@ if (!isset($_SESSION['id_user']) && isset($_COOKIE['remember_email'])) {
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        // Set session dari data cookie
-        $_SESSION['id_user'] = $user['id_user'];
-        $_SESSION['nama'] = $user['nama'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['foto'] = $user['foto'];
-        $_SESSION['role'] = $user['role'];
+        // Cek status, jika Nonaktif jangan login otomatis
+        if ($user['status'] == 'Nonaktif') {
+            setcookie('remember_email', '', time() - 3600, "/");
+        } else {
+            // Set session dari data cookie
+            $_SESSION['id_user'] = $user['id_user'];
+            $_SESSION['nama'] = $user['nama'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['foto'] = $user['foto'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['status'] = $user['status'];
+        }
     }
 }
 
-// -- Auth Guard: Redirect ke login jika belum login --
 // Gunakan fungsi ini di halaman yang membutuhkan login
 function requireLogin() {
     if (!isset($_SESSION['id_user'])) {
         // Simpan URL tujuan agar bisa redirect setelah login
         $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
         header("Location: login.php?alert=needlogin");
+        exit();
+    }
+    
+    // Cek jika akun dinonaktifkan
+    if (isset($_SESSION['status']) && $_SESSION['status'] == 'Nonaktif') {
+        session_destroy();
+        header("Location: login.php?alert=disabled");
+        exit();
+    }
+}
+
+// -- Admin Guard: Redirect jika bukan admin --
+function requireAdmin() {
+    requireLogin();
+    if ($_SESSION['role'] !== 'admin') {
+        header("Location: dashboard.php");
         exit();
     }
 }

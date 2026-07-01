@@ -24,7 +24,9 @@ if (isset($_GET['id']) && isset($_GET['type'])) {
                 unlink(UPLOAD_DIR . $item['foto']);
             }
             // Hapus data dari db
-            $conn->query("DELETE FROM barang_hilang WHERE id_barang = $id");
+            if ($conn->query("DELETE FROM barang_hilang WHERE id_barang = $id")) {
+                $conn->query("INSERT INTO aktivitas (id_user, aksi) VALUES ($current_user_id, 'User menghapus laporan barang hilang (ID: $id)')");
+            }
         }
     } else if ($type === 'temuan') {
         // Ambil data foto dulu sebelum dihapus
@@ -41,7 +43,9 @@ if (isset($_GET['id']) && isset($_GET['type'])) {
                 unlink(UPLOAD_DIR . $item['foto']);
             }
             // Hapus data dari db
-            $conn->query("DELETE FROM barang_temuan WHERE id_temuan = $id");
+            if ($conn->query("DELETE FROM barang_temuan WHERE id_temuan = $id")) {
+                $conn->query("INSERT INTO aktivitas (id_user, aksi) VALUES ($current_user_id, 'User menghapus laporan barang temuan (ID: $id)')");
+            }
         }
     }
 }

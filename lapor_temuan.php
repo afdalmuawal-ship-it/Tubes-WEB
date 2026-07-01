@@ -4,8 +4,14 @@
 require_once 'session.php';
 requireLogin();
 
-// Array kategori dari config
-$kategori_list = unserialize(KATEGORI_LIST);
+// Ambil kategori dari database
+$kategori_list = [];
+$res_kat = $conn->query("SELECT nama_kategori FROM kategori ORDER BY nama_kategori ASC");
+if ($res_kat) {
+    while ($r = $res_kat->fetch_assoc()) {
+        $kategori_list[] = $r['nama_kategori'];
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_user = $_SESSION['id_user'];
@@ -43,6 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               VALUES ($id_user, '$nama_barang', '$kategori', '$lokasi', '$tanggal_temuan', '$deskripsi', '$foto_name', 'Disimpan')";
 
     if ($conn->query($query)) {
+        // Log aktivitas
+        $id_laporan = $conn->insert_id;
+        $conn->query("INSERT INTO aktivitas (id_user, aksi) VALUES ($id_user, 'User membuat laporan barang temuan (ID: $id_laporan)')");
+        
         header("Location: data_barang.php?alert=tambah_success");
         exit();
     } else {

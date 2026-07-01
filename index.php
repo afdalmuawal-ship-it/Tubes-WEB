@@ -10,10 +10,10 @@ require_once 'koneksi.php';
 
 // -- Ambil statistik untuk ditampilkan --
 $totalUsers = $conn->query("SELECT COUNT(*) as total FROM users")->fetch_assoc()['total'];
-$totalHilang = $conn->query("SELECT COUNT(*) as total FROM barang_hilang")->fetch_assoc()['total'];
-$totalTemuan = $conn->query("SELECT COUNT(*) as total FROM barang_temuan")->fetch_assoc()['total'];
-$totalKembali = $conn->query("SELECT COUNT(*) as total FROM barang_hilang WHERE status='Dikembalikan'")->fetch_assoc()['total'];
-$totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE status='Dikembalikan'")->fetch_assoc()['total'];
+$totalHilang = $conn->query("SELECT COUNT(*) as total FROM barang_hilang WHERE status_verifikasi = 'Disetujui'")->fetch_assoc()['total'];
+$totalTemuan = $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE status_verifikasi = 'Disetujui'")->fetch_assoc()['total'];
+$totalKembali = $conn->query("SELECT COUNT(*) as total FROM barang_hilang WHERE status='Dikembalikan' AND status_verifikasi = 'Disetujui'")->fetch_assoc()['total'];
+$totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE status='Dikembalikan' AND status_verifikasi = 'Disetujui'")->fetch_assoc()['total'];
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -617,7 +617,7 @@ $totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE
                     <h6>Kontak</h6>
                     <ul class="footer-links">
                         <li><i class="bi bi-envelope me-2"></i> info@lostly.com</li>
-                        <li><i class="bi bi-telephone me-2"></i> +62 858 0744 4742</li>
+                        <li><i class="bi bi-telephone me-2"></i> +62 851 2345 6789</li>
                         <li><i class="bi bi-geo-alt me-2"></i> Samata Kab. Gowa</li>
                     </ul>
                 </div>
@@ -625,7 +625,7 @@ $totalKembali += $conn->query("SELECT COUNT(*) as total FROM barang_temuan WHERE
 
             <!-- Footer Bottom -->
             <div class="footer-bottom">
-                <p>&copy; <?= date('Y') ?> Lostly. All rights reserved. Made with <i class="bi bi-heart-fill text-danger"></i> for Campus Community.</p>
+                <p>&copy; <?= date('Y') ?> Lostly. All rights reserved.</p>
             </div>
         </div>
     </footer>

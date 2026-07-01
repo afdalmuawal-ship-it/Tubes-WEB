@@ -520,6 +520,25 @@ document.addEventListener('DOMContentLoaded', () => {
             icon: 'error',
             title: 'Registrasi Gagal!',
             text: 'Email sudah terdaftar, gunakan email lain'
+        },
+        'success': {
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Aksi berhasil diproses.',
+            timer: 2000,
+            showConfirmButton: false
+        },
+        'deleted': {
+            icon: 'success',
+            title: 'Dihapus!',
+            text: 'Data berhasil dihapus dari sistem.',
+            timer: 2000,
+            showConfirmButton: false
+        },
+        'disabled': {
+            icon: 'error',
+            title: 'Akun Dinonaktifkan!',
+            text: 'Akun Anda dinonaktifkan oleh administrator. Silakan hubungi admin.'
         }
     };
 

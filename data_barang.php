@@ -1,11 +1,15 @@
 <?php
-// DATA_BARANG.PHP - Halaman Data Barang (Hilang & Temuan)
 
 require_once 'session.php';
 requireLogin();
 
-// Array kategori dari config
-$kategori_list = unserialize(KATEGORI_LIST);
+$kategori_list = [];
+$res_kat = $conn->query("SELECT nama_kategori FROM kategori ORDER BY nama_kategori ASC");
+if ($res_kat) {
+    while ($r = $res_kat->fetch_assoc()) {
+        $kategori_list[] = $r['nama_kategori'];
+    }
+}
 
 // Konfigurasi Pagination
 $limit = 9; // Jumlah item per halaman
@@ -13,7 +17,7 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 // Filter Data
-$where_clause = "1=1";
+$where_clause = "status_verifikasi = 'Disetujui'";
 $params = [];
 $types = "";
 
@@ -31,9 +35,9 @@ if (isset($_GET['status']) && !empty($_GET['status'])) {
 
 // Mengambil total data untuk pagination
 $count_query = "SELECT COUNT(*) as total FROM (
-    SELECT id_barang as id, kategori, status FROM barang_hilang
+    SELECT id_barang as id, kategori, status, status_verifikasi FROM barang_hilang
     UNION ALL
-    SELECT id_temuan as id, kategori, status FROM barang_temuan
+    SELECT id_temuan as id, kategori, status, status_verifikasi FROM barang_temuan
 ) as all_items WHERE $where_clause";
 
 $stmt_count = $conn->prepare($count_query);
@@ -46,10 +50,10 @@ $total_pages = ceil($total_data / $limit);
 
 // Mengambil data barang
 $query = "SELECT * FROM (
-    SELECT id_barang as id, nama_barang, kategori, lokasi, tanggal_hilang as tanggal, deskripsi, foto, status, created_at, 'hilang' as tipe 
+    SELECT id_barang as id, nama_barang, kategori, lokasi, tanggal_hilang as tanggal, deskripsi, foto, status, status_verifikasi, created_at, 'hilang' as tipe 
     FROM barang_hilang
     UNION ALL
-    SELECT id_temuan as id, nama_barang, kategori, lokasi, tanggal_temuan as tanggal, deskripsi, foto, status, created_at, 'temuan' as tipe 
+    SELECT id_temuan as id, nama_barang, kategori, lokasi, tanggal_temuan as tanggal, deskripsi, foto, status, status_verifikasi, created_at, 'temuan' as tipe 
     FROM barang_temuan
 ) as all_items 
 WHERE $where_clause 

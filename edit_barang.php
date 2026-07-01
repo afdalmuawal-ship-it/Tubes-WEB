@@ -4,8 +4,14 @@
 require_once 'session.php';
 requireLogin();
 
-// Array kategori dari config
-$kategori_list = unserialize(KATEGORI_LIST);
+// Ambil kategori dari database
+$kategori_list = [];
+$res_kat = $conn->query("SELECT nama_kategori FROM kategori ORDER BY nama_kategori ASC");
+if ($res_kat) {
+    while ($r = $res_kat->fetch_assoc()) {
+        $kategori_list[] = $r['nama_kategori'];
+    }
+}
 
 // Validasi parameter ID dan Tipe
 if (!isset($_GET['id']) || !isset($_GET['type']) || ($_GET['type'] !== 'hilang' && $_GET['type'] !== 'temuan')) {
@@ -75,17 +81,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $update_query = "UPDATE barang_hilang SET 
                          nama_barang = '$nama_barang', kategori = '$kategori', 
                          lokasi = '$lokasi', tanggal_hilang = '$tanggal', 
-                         deskripsi = '$deskripsi', foto = '$foto_name', status = '$status' 
+                         deskripsi = '$deskripsi', foto = '$foto_name', status = '$status',
+                         status_verifikasi = 'Menunggu Verifikasi'
                          WHERE id_barang = $id AND id_user = $current_user_id";
     } else {
         $update_query = "UPDATE barang_temuan SET 
                          nama_barang = '$nama_barang', kategori = '$kategori', 
                          lokasi = '$lokasi', tanggal_temuan = '$tanggal', 
-                         deskripsi = '$deskripsi', foto = '$foto_name', status = '$status' 
+                         deskripsi = '$deskripsi', foto = '$foto_name', status = '$status',
+                         status_verifikasi = 'Menunggu Verifikasi'
                          WHERE id_temuan = $id AND id_user = $current_user_id";
     }
 
     if ($conn->query($update_query)) {
+        // Log aktivitas
+        $conn->query("INSERT INTO aktivitas (id_user, aksi) VALUES ($current_user_id, 'User mengedit laporan barang $type (ID: $id)')");
+        
         header("Location: detail_barang.php?id=$id&type=$type&alert=edit_success");
         exit();
     } else {
