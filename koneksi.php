@@ -3,6 +3,8 @@
 // Include konfigurasi
 require_once __DIR__ . '/config.php';
 
+date_default_timezone_set('Asia/Makassar');
+
 // -- Membuat koneksi ke database MySQL --
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
