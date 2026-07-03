@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS barang_temuan (
     FOREIGN KEY (id_user) REFERENCES users(id_user) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
 INSERT INTO users (nama, email, password, foto, role) VALUES
 ('Admin Lostly', 'admin@lostly.com', 'admin123', 'default.png', 'admin'),
 ('Budi Santoso', 'budi@student.ac.id', 'user123', 'default.png', 'user'),

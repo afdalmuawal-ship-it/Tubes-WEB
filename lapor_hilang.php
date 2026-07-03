@@ -1,5 +1,4 @@
 <?php
-// LAPOR_HILANG.PHP - Halaman Pelaporan Barang Hilang
 
 require_once 'session.php';
 requireLogin();
