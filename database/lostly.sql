@@ -1,8 +1,3 @@
-
--- DATABASE: Lostly - Sistem Pelaporan Barang Hilang & Temuan
--- Dibuat untuk lingkungan kampus
-
-
 -- Buat database
 CREATE DATABASE IF NOT EXISTS lostly_db;
 USE lostly_db;
